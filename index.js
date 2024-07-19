@@ -4,7 +4,7 @@ const swaggerUi = require('swagger-ui-express');
 const dotevn = require('dotenv');
 dotevn.config();
 
-const indexRoute = require('./routes/index');
+const indexRoute = require('./swagger/index');
 
 const app = express();
 const port = process.env.PORT;
@@ -25,8 +25,9 @@ const swaggerOptions = {
     },
     schemes: ['http, https'],
   },
-  apis: ['./routes/*.js']
+  apis: ['./swagger/*.js']
 };
+// a swagger pode trocar de nome para routes, por exemplo
 
 const swaggerDocs = swaggerJSDoc(swaggerOptions);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
